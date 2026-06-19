@@ -18,7 +18,7 @@ import {
   type Counts,
   type Category,
   type SiteStructure,
-} from "../engine/index";
+} from "@unpress/engine";
 
 type RecoverResult = ReturnType<typeof recover>;
 type Inventory = ReturnType<typeof buildInventory>;

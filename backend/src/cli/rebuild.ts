@@ -8,10 +8,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { generate } from "../src/rebuild/generate";
+import { generate } from "../rebuild/generate.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const TEMPLATE_DIR = path.join(here, "..", "templates", "rebirth");
+const TEMPLATE_DIR = path.join(here, "..", "..", "templates", "rebirth");
 
 async function main() {
   const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));

@@ -1,6 +1,10 @@
 // Generates a tiny synthetic .wpress fixture for testing the recover UI fast,
 // without needing a real multi-hundred-MB backup. Writes public/sample.wpress.
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const PNG = Buffer.from(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
@@ -35,8 +39,10 @@ for (const f of files) {
   chunks.push(header(f.name, f.prefix, f.data.length));
   chunks.push(f.data);
 }
-chunks.push(Buffer.alloc(4377, 0)); // EOF
+chunks.push(Buffer.alloc(4377, 0));
 
-fs.mkdirSync("public", { recursive: true });
-fs.writeFileSync("public/sample.wpress", Buffer.concat(chunks));
-console.log("wrote public/sample.wpress", fs.statSync("public/sample.wpress").size, "bytes");
+const outDir = path.join(root, "public");
+fs.mkdirSync(outDir, { recursive: true });
+const outPath = path.join(outDir, "sample.wpress");
+fs.writeFileSync(outPath, Buffer.concat(chunks));
+console.log("wrote", outPath, fs.statSync(outPath).size, "bytes");

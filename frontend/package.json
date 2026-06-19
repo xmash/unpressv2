@@ -1,14 +1,12 @@
 {
-  "name": "unpress",
+  "name": "unpress-frontend",
   "version": "0.1.0",
   "private": true,
-  "description": "Unpress — your website, set free. Recover engine + web app.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "recover": "tsx bin/recover.ts",
-    "rebuild": "tsx bin/rebuild.ts"
+    "fixture": "node scripts/make-fixture.mjs"
   },
   "dependencies": {
     "jszip": "^3.10.1",
@@ -22,7 +20,6 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.1.11",
-    "tsx": "^4.19.2",
     "typescript": "^5.7.0"
   }
 }

@@ -12,7 +12,7 @@ import {
   buildInventory,
   pageToMarkdownFile,
   pageFilePath,
-} from "../src/engine/index";
+} from "../engine/index.js";
 
 async function main() {
   const args = process.argv.slice(2);

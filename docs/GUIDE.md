@@ -1,7 +1,7 @@
-# Unpress
+﻿# Unpress
 
 **Your website, set free.** Drop in an old WordPress `.wpress` backup (All-in-One WP
-Migration) and get your content + photos back — instantly, in your browser. Your file
+Migration) and get your content + photos back ΓÇö instantly, in your browser. Your file
 never leaves your computer.
 
 > Re-creation, not replication. The theme is disposable; the content is the asset.
@@ -12,36 +12,36 @@ never leaves your computer.
 
 Every other tool assumes a **live** WordPress: `.wpress` extractors stop at "here are your
 files"; Markdown exporters need WordPress running to produce a WXR export; headless
-starters need WordPress serving an API. Nobody bridges a **dead** `.wpress` backup →
-usable content → modern site. Unpress is that bridge.
+starters need WordPress serving an API. Nobody bridges a **dead** `.wpress` backup ΓåÆ
+usable content ΓåÆ modern site. Unpress is that bridge.
 
 ## What's built (MVP)
 
-- **`src/engine/`** — the Recover engine, a DOM-free TypeScript module that runs identically
+- **`src/engine/`** ΓÇö the Recover engine, a DOM-free TypeScript module that runs identically
   in Node and in a browser Web Worker:
-  - `wpress.ts` — reads the `.wpress` block format (4377-byte headers).
-  - `sql.ts` — minimal MySQL-dump reader (pulls rows from `INSERT` statements).
-  - `content.ts` — de-shortcodes Fusion/Avada + Gutenberg + Classic HTML → clean
+  - `wpress.ts` ΓÇö reads the `.wpress` block format (4377-byte headers).
+  - `sql.ts` ΓÇö minimal MySQL-dump reader (pulls rows from `INSERT` statements).
+  - `content.ts` ΓÇö de-shortcodes Fusion/Avada + Gutenberg + Classic HTML ΓåÆ clean
     HTML + Markdown, rewrites media URLs to local paths. No DOM dependency.
-  - `recover.ts` — orchestrates: `.wpress` bytes → site info, pages/posts, media, inventory.
-- **`bin/recover.ts`** — Node CLI. `npm run recover -- <file.wpress> [outDir] [--drafts]` → a
+  - `recover.ts` ΓÇö orchestrates: `.wpress` bytes ΓåÆ site info, pages/posts, media, inventory.
+- **`bin/recover.ts`** ΓÇö Node CLI. `npm run recover -- <file.wpress> [outDir] [--drafts]` ΓåÆ a
   folder + `unpress-recovery.zip` (Markdown + HTML per page, original images, `inventory.json`).
   Published only by default; drafts/private are opt-in and routed to separate folders.
-- **`src/rebuild/`** + **`bin/rebuild.ts`** — the Rebuild ("rebirth"): recovered published
-  content → a clean, modern, self-contained **static site** (home, nav, per-page, articles
+- **`src/rebuild/`** + **`bin/rebuild.ts`** ΓÇö the Rebuild ("rebirth"): recovered published
+  content ΓåÆ a clean, modern, self-contained **static site** (home, nav, per-page, articles
   index, media, CSS, localized internal links). `npm run rebuild -- <file.wpress> [outDir]`.
-- **`src/app/`** — the "Google homepage" Next.js app: one dropzone, runs the engine in a
+- **`src/app/`** ΓÇö the "Google homepage" Next.js app: one dropzone, runs the engine in a
   Web Worker (nothing uploads), previews recovered content, and a Download button.
 
 ## Defaults that keep the output clean
 
 - **Published only** by default (drafts/pending/junk excluded; drafts opt-in via `--drafts`).
-- **Original media only** — WordPress's resized variants (`-150x150`, `-scaled`, …) are
+- **Original media only** ΓÇö WordPress's resized variants (`-150x150`, `-scaled`, ΓÇª) are
   dropped and content URLs rewritten to the originals, so nothing breaks.
 
 ## Proven on real data (Alicance)
 
-`241 MB .wpress` → **Alicance Data Centers**: 17 pages, 14 posts, 429 images. Content
+`241 MB .wpress` ΓåÆ **Alicance Data Centers**: 17 pages, 14 posts, 429 images. Content
 de-shortcodes to clean Markdown; **54/54 image references resolve** to recovered files.
 
 ## Run it

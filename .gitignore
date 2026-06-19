@@ -1,7 +1,9 @@
 node_modules/
 .next/
 out/
+dist/
 recovered-*/
+rebuilt-site/
 *.wpress
 .DS_Store
 *.tsbuildinfo

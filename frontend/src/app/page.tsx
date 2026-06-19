@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { WorkerResponse } from "./recover.worker";
-import type { Category, SiteStructure, TreeNode, Counts } from "@/engine";
+import type { Category, SiteStructure, TreeNode, Counts } from "@unpress/engine";
 
 type Status = "idle" | "working" | "done" | "error";
 

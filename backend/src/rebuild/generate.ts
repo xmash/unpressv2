@@ -5,8 +5,8 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { recover } from "../engine/index";
-import type { RecoveredPage } from "../engine/recover";
+import { recover } from "../engine/index.js";
+import type { RecoveredPage } from "../engine/recover.js";
 
 const slugOf = (p: RecoveredPage) => p.slug || p.id;
 
