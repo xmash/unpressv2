@@ -48,9 +48,10 @@ export default function RootLayout({
             <span>
               <Link href="/#recover">Recover</Link>
               <Link href="/#how">How it works</Link>
-              <Link href="/#formats">Formats</Link>
-              <Link href="/#pricing">Pricing</Link>
               <Link href="/limits">Limits &amp; pricing</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/privacy-policy">Privacy</Link>
+              <Link href="/cookie-policy">Cookies</Link>
             </span>
           </div>
         </footer>

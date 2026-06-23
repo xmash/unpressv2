@@ -87,7 +87,7 @@ function watermark(md: string): string {
     md +
     "\n\n---\n\n" +
     "> 🟢 Recovered free with **Unpress** — this is a 1-page sample.\n" +
-    "> Get your whole site (every page, post & photo) at unpress.app\n"
+    "> Get your whole site (every page, post & photo) at wpunpress.com\n"
   );
 }
 

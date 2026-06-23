@@ -9,13 +9,18 @@
     "fixture": "node scripts/make-fixture.mjs"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^10.0.0",
+    "@stripe/react-stripe-js": "^6.6.0",
+    "@stripe/stripe-js": "^9.8.0",
     "fflate": "^0.8.3",
     "jszip": "^3.10.1",
     "next": "^15.5.4",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "stripe": "^18.5.0"
   },
   "devDependencies": {
+    "@netlify/functions": "^5.3.0",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^22.10.0",
     "@types/react": "^19.0.0",

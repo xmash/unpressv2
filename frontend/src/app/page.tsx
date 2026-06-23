@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import type { WorkerResponse } from "./recover.worker";
 import { sizeError, sha256Hex, checkParse } from "../lib/limits";
+import CheckoutModal from "./CheckoutModal";
 import type {
   Category,
   SiteStructure,
@@ -91,6 +92,7 @@ export default function Home() {
   const [includeDrafts, setIncludeDrafts] = useState(false);
   const [entitled, setEntitled] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const [checkout, setCheckout] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const workerRef = useRef<Worker | null>(null);
   const includeDraftsRef = useRef(includeDrafts);
@@ -204,9 +206,13 @@ export default function Home() {
 
   const onBuy = () => {
     if (entitled) return requestExport();
-    // TODO: real checkout (Stripe). Placeholder unlock for now.
+    setCheckout(true); // open Stripe / PayPal checkout
+  };
+
+  const onPaid = () => {
     setEntitled(true);
-    requestExport();
+    setCheckout(false);
+    requestExport(); // worker still holds the parse — download fires immediately
   };
 
   const onSample = () => {
@@ -230,6 +236,9 @@ export default function Home() {
 
   return (
     <>
+      {checkout && (
+        <CheckoutModal amountLabel={`$${PRICE}`} onPaid={onPaid} onClose={() => setCheckout(false)} />
+      )}
       {status !== "idle" && (
         <main className="recover-view">
           {status === "working" && (
