@@ -511,14 +511,14 @@ function Results({
   onReset: () => void;
 }) {
   const hasAppearance = result.themes.length > 0 || result.fonts.families.length > 0;
-  const tabs: { key: string; label: string; count?: number; locked?: boolean; group: string }[] = [
+  const tabs: { key: string; label: string; count?: number; group: string }[] = [
     { key: "structure", label: "File structure", group: "Overview" },
     ...result.categories.map((c) => ({ key: c.key, label: c.label, count: c.count, group: "Content" })),
     { key: "media", label: "Media", count: result.media.count || result.media.referenced.length, group: "Site" },
     ...(result.commentsTotal ? [{ key: "comments", label: "Comments", count: result.commentsTotal, group: "Site" }] : []),
     ...(hasAppearance ? [{ key: "appearance", label: "Appearance", count: result.themes.length + result.fonts.families.length, group: "Site" }] : []),
     ...(result.plugins.length ? [{ key: "plugins", label: "Plugins", count: result.plugins.length, group: "Site" }] : []),
-    { key: "products", label: "Store", count: result.productCount, locked: true, group: "Site" },
+    ...(result.productCount ? [{ key: "products", label: "Store", count: result.productCount, group: "Site" }] : []),
   ];
   const GROUPS = ["Overview", "Content", "Site"];
   const [tab, setTab] = useState("structure");
@@ -565,7 +565,6 @@ function Results({
                     className={`rail-tab ${tab === t.key ? "active" : ""}`}
                     onClick={() => setTab(t.key)}
                   >
-                    {t.locked && <span className="lock">🔒</span>}
                     <span className="rail-tab-label">{t.label}</span>
                     {typeof t.count === "number" && <span className="pill">{t.count}</span>}
                   </button>
@@ -631,11 +630,11 @@ function TreeItem({ node }: { node: TreeNode }) {
   );
 }
 
-function MoreLocked({ hidden, noun }: { hidden: number; noun: string }) {
+function MoreItems({ hidden, noun }: { hidden: number; noun: string }) {
   if (hidden <= 0) return null;
   return (
-    <div className="more-locked">
-      🔒 +{hidden.toLocaleString()} more {noun}
+    <div className="more-items">
+      +{hidden.toLocaleString()} more {noun} in the full download
     </div>
   );
 }
@@ -672,7 +671,7 @@ function ItemList({ items, total }: { items: Category["items"]; total: number })
           </div>
         ))}
       </div>
-      <MoreLocked hidden={total - items.length} noun={noun} />
+      <MoreItems hidden={total - items.length} noun={noun} />
     </div>
   );
 }
@@ -694,7 +693,7 @@ function CommentsTab({ comments, total }: { comments: RecoveredComment[]; total:
           </div>
         ))}
       </div>
-      <MoreLocked hidden={total - comments.length} noun="comments" />
+      <MoreItems hidden={total - comments.length} noun="comments" />
     </div>
   );
 }
@@ -830,47 +829,37 @@ function MediaTab({ media }: { media: MediaState }) {
           <div key={f}>{f}</div>
         ))}
       </div>
-      <MoreLocked hidden={media.filesTotal - media.files.length} noun="images & files" />
+      <MoreItems hidden={media.filesTotal - media.files.length} noun="images & files" />
     </div>
   );
 }
 
 function ProductsTab({ count, sample }: { count: number; sample: ProductPreview[] }) {
+  if (count === 0) {
+    return <p className="muted-note">No WooCommerce products found in this backup.</p>;
+  }
   return (
     <div>
-      {sample.length > 0 && (
-        <>
-          <p className="muted-note mb">
-            {count.toLocaleString()} product{count === 1 ? "" : "s"} found — here&apos;s a sample
-            (names only · no pricing or inventory in the preview):
-          </p>
-          <div className="itemgrid">
-            {sample.map((p) => (
-              <div className="itemcard" key={p.slug + p.title}>
-                <div className="row">
-                  <h4>{p.title}</h4>
-                  <span className="badge type">product</span>
-                </div>
-                <dl className="fields">
-                  <div className="field"><dt>Price</dt><dd>🔒 locked</dd></div>
-                  <div className="field"><dt>Inventory</dt><dd>🔒 locked</dd></div>
-                </dl>
-              </div>
-            ))}
+      <p className="muted-note mb">
+        {count.toLocaleString()} product{count === 1 ? "" : "s"} found.
+      </p>
+      <div className="itemgrid">
+        {sample.map((p) => (
+          <div className="itemcard" key={p.slug + p.title}>
+            <div className="row">
+              <h4>{p.title}</h4>
+              <span className="badge type">product</span>
+            </div>
           </div>
-          <MoreLocked hidden={count - sample.length} noun="products" />
-        </>
-      )}
+        ))}
+      </div>
+      <MoreItems hidden={count - sample.length} noun="products" />
 
-      <div className="locked" style={{ marginTop: sample.length ? 20 : 0 }}>
-        <div className="lockicon">🛍️</div>
-        <h3>WooCommerce store recovery</h3>
+      <div className="store-cta">
+        <h3>🛍️ Store export</h3>
         <p>
-          {count > 0
-            ? `All ${count} product${count === 1 ? "" : "s"}, `
-            : "If this backup contains a shop, products come "}
-          with variations, prices, SKUs and categories as an import-ready export — a +${WOO} add-on
-          to your download.
+          Get every product with variations, prices, SKUs and categories as an import-ready export —
+          a +${WOO} add-on to your download.
         </p>
         <button className="pro-btn" onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}>
           Add store export — +${WOO}

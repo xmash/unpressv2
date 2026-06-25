@@ -246,11 +246,17 @@ a { color: inherit; }
 .spam-note { margin-bottom: 16px; padding: 12px 16px; border-radius: 12px; font-size: 0.86rem;
   color: #92400e; background: rgba(251,191,36,0.14); border: 1px solid rgba(251,191,36,0.4); }
 
-/* preview gating — "+N more, unlock export" */
-.more-locked { margin-top: 16px; padding: 14px 18px; border-radius: 12px; text-align: center;
+/* preview — "+N more" hint */
+.more-items { margin-top: 16px; padding: 14px 18px; border-radius: 12px; text-align: center;
   font-size: 0.9rem; color: var(--muted); background: var(--panel);
   border: 1px dashed var(--line); }
-.more-locked strong { color: var(--ink, #0f1b2d); }
+.more-items strong { color: var(--ink, #0f1b2d); }
+
+/* store export add-on (soft CTA, not a paywall) */
+.store-cta { margin-top: 22px; padding: 22px 24px; border-radius: 16px; background: var(--accent-soft);
+  border: 1px solid var(--line); }
+.store-cta h3 { margin: 0 0 6px; font-size: 1.15rem; font-weight: 700; }
+.store-cta p { color: var(--muted); font-size: 0.92rem; margin: 0 0 16px; max-width: 560px; }
 
 /* checkout modal */
 .co-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(15,27,45,0.55);

@@ -170,7 +170,7 @@ export function categorize(res: RecoverResult): Categorized {
       ...categories.map((c) => ({ label: c.label, count: c.count })),
       { label: "Comments", count: res.comments.length },
       { label: "Media", count: res.media.length },
-      { label: "Products (locked)", count: res.productCount },
+      { label: "Products", count: res.productCount },
     ].filter((g) => g.count > 0),
   };
 

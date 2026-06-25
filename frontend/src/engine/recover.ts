@@ -111,7 +111,7 @@ export interface ProductPreview {
   slug: string;
 }
 
-const PRODUCT_SAMPLE = 5;
+const PRODUCT_SAMPLE = 6;
 
 export interface MediaFile {
   path: string; // local path, e.g. media/2023/04/logo.png
