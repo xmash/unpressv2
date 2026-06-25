@@ -80,7 +80,7 @@ export default function LimitsPage() {
             <tbody>
               <tr><td>Preview</td><td>Free</td><td>See everything counted, sample of each, site structure &amp; statistics</td></tr>
               <tr><td>Recover</td><td>$19 / site</td><td>Full export — every page &amp; post (Markdown + HTML), all images, comments, inventory</td></tr>
-              <tr><td>Store add-on</td><td>+$19 / store</td><td>WooCommerce products, variations, prices, SKUs, categories &amp; metadata</td></tr>
+              <tr><td>Store add-on</td><td>+$59 / store</td><td>WooCommerce products, variations, prices, SKUs, categories &amp; metadata</td></tr>
             </tbody>
           </table>
         </div>

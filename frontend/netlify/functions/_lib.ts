@@ -5,9 +5,9 @@
 export const PRICE = {
   // Stripe wants cents; PayPal wants dollar strings.
   siteCents: 1900,
-  storeCents: 1999,
+  storeCents: 5900,
   siteUsd: "19.00",
-  storeUsd: "19.99",
+  storeUsd: "59.00",
 };
 
 export function totalCents(store: boolean) {

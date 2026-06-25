@@ -39,7 +39,7 @@ export default function Terms() {
         <h2 className="lp-h2">3. Purchases &amp; pricing</h2>
         <p>
           The full site export is a one-time purchase of $19 per site; the WooCommerce store export is
-          an additional $19.99. Prices are shown before you pay and may change over time. You are
+          an additional $59. Prices are shown before you pay and may change over time. You are
           responsible for any applicable taxes. Payments are processed by Stripe and PayPal.
         </p>
 

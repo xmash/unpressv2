@@ -19,7 +19,7 @@ import type {
 type Status = "idle" | "working" | "done" | "error";
 
 const PRICE = 19; // USD per website
-const WOO = 19.99; // USD per store add-on
+const WOO = 59; // USD per store add-on
 
 const FORMATS = [
   { ext: ".wpress", what: "All-in-One WP Migration", sites: "1" },
