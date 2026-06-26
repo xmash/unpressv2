@@ -54,6 +54,7 @@ a { color: inherit; }
 .wm-badge svg { width: 18px; height: 18px; fill: #fff; }
 .wm-text { line-height: 1; }
 .wm-mid { color: var(--accent); margin: 0 0.5px; }
+body:has(.recover-view) .brandbar nav { display: none; }
 .brandbar nav { display: flex; gap: 26px; align-items: center; font-size: 0.93rem; font-weight: 500; }
 .brandbar nav a { color: var(--muted); }
 .brandbar nav a:hover { color: var(--ink); }

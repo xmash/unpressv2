@@ -39,11 +39,11 @@ export default function RootLayout({
             </span>
           </Link>
           <nav>
-            <Link href="/#how">How it works</Link>
-            <Link href="/#formats">Formats</Link>
-            <Link href="/#pricing">Pricing</Link>
-            <Link href="/#faq">FAQ</Link>
-            <Link href="/#recover" className="navcta">Recover a site</Link>
+            <a href="/#how">How it works</a>
+            <a href="/#formats">Formats</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#faq">FAQ</a>
+            <a href="/#recover" className="navcta">Recover a site</a>
           </nav>
         </header>
 
@@ -53,8 +53,8 @@ export default function RootLayout({
           <div className="inner">
             <span>© {new Date().getFullYear()} Unpress — your website, set free.</span>
             <span>
-              <Link href="/#recover">Recover</Link>
-              <Link href="/#how">How it works</Link>
+              <a href="/#recover">Recover</a>
+              <a href="/#how">How it works</a>
               <Link href="/limits">Limits &amp; pricing</Link>
               <Link href="/terms">Terms</Link>
               <Link href="/privacy-policy">Privacy</Link>
