@@ -259,30 +259,47 @@ a { color: inherit; }
 .store-cta p { color: var(--muted); font-size: 0.92rem; margin: 0 0 16px; max-width: 560px; }
 
 /* checkout modal */
-.co-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(15,27,45,0.55);
-  display: flex; align-items: flex-start; justify-content: center; padding: 6vh 16px; overflow: auto; }
-.co-modal { position: relative; width: 100%; max-width: 460px; background: #fff; border-radius: 18px;
-  box-shadow: 0 24px 64px rgba(15,27,45,0.3); padding: 28px; }
-.co-close { position: absolute; top: 12px; right: 14px; background: none; border: 0; cursor: pointer;
-  font-size: 1.6rem; line-height: 1; color: var(--muted); }
-.co-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 4px; }
-.co-sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 18px; }
+.co-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(15,27,45,0.6);
+  backdrop-filter: blur(3px); display: flex; align-items: flex-start; justify-content: center;
+  padding: 6vh 16px; overflow: auto; }
+.co-modal { position: relative; width: 100%; max-width: 440px; background: #fff; border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(15,27,45,0.35); padding: 26px 26px 20px; }
+.co-close { position: absolute; top: 14px; right: 16px; width: 30px; height: 30px; border-radius: 8px;
+  background: var(--panel); border: 0; cursor: pointer; font-size: 1.3rem; line-height: 1; color: var(--muted); }
+.co-close:hover { background: var(--line); color: var(--ink); }
+.co-head { margin-bottom: 18px; }
+.co-title { font-size: 1.35rem; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.02em; }
+.co-sub { color: var(--muted); font-size: 0.88rem; margin: 0; }
+
+/* order summary */
+.co-summary { border: 1px solid var(--line); border-radius: 14px; padding: 6px 16px; margin-bottom: 18px; }
+.co-row { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 0; font-size: 0.92rem; }
+.co-row + .co-row { border-top: 1px solid var(--line); }
+.co-addon { cursor: pointer; }
+.co-addon-l { display: flex; align-items: flex-start; gap: 9px; }
+.co-addon-l input { margin-top: 3px; }
+.co-addon-l small { display: block; color: var(--muted); font-size: 0.72rem; margin-top: 1px; }
+.co-total { font-weight: 800; font-size: 1.05rem; }
+.co-total span:last-child { font-family: var(--font-sora), sans-serif; }
+
 .co-note { background: var(--panel); border: 1px dashed var(--line); border-radius: 12px;
   padding: 14px 16px; font-size: 0.88rem; color: var(--muted); }
-.co-methods { display: flex; gap: 8px; margin-bottom: 16px; }
-.co-method { flex: 1; appearance: none; border: 1px solid var(--line); background: #fff; cursor: pointer;
-  font: inherit; font-weight: 700; font-size: 0.92rem; padding: 10px; border-radius: 10px; color: var(--muted); }
+.co-methods { display: flex; gap: 8px; margin-bottom: 14px; }
+.co-method { flex: 1; appearance: none; border: 1.5px solid var(--line); background: #fff; cursor: pointer;
+  font: inherit; font-weight: 700; font-size: 0.92rem; padding: 11px; border-radius: 11px; color: var(--muted); }
 .co-method.active { border-color: var(--accent); color: var(--accent-2); background: var(--accent-soft); }
 .co-pane { min-height: 60px; }
-.co-agree { display: flex; gap: 9px; align-items: flex-start; margin: 4px 0 14px; font-size: 0.82rem;
+.co-agree { display: flex; gap: 9px; align-items: flex-start; margin: 4px 0 12px; font-size: 0.82rem;
   color: var(--muted); line-height: 1.45; cursor: pointer; }
 .co-agree input { margin-top: 2px; flex: 0 0 auto; }
 .co-agree a { color: var(--accent-2); text-decoration: underline; }
 .co-agree strong { color: var(--ink); }
-.co-hint { text-align: center; font-size: 0.85rem; color: var(--muted); padding: 14px 0; }
+.co-hint { text-align: center; font-size: 0.85rem; color: var(--muted); padding: 12px 0; }
 .co-status { margin-top: 14px; font-size: 0.9rem; font-weight: 600; text-align: center; }
 .co-status.ok { color: #15803d; }
 .co-status.err { color: #b91c1c; }
+.co-trust { margin: 16px 0 0; text-align: center; font-size: 0.74rem; color: var(--muted); }
 
 /* limits & pricing + legal pages */
 .legal-page { max-width: 920px; margin: 0 auto; }

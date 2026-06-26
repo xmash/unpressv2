@@ -93,6 +93,7 @@ export default function Home() {
   const [entitled, setEntitled] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [checkout, setCheckout] = useState(false);
+  const [checkoutStore, setCheckoutStore] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const workerRef = useRef<Worker | null>(null);
   const includeDraftsRef = useRef(includeDrafts);
@@ -206,7 +207,13 @@ export default function Home() {
 
   const onBuy = () => {
     if (entitled) return requestExport();
+    setCheckoutStore(false);
     setCheckout(true); // open Stripe / PayPal checkout
+  };
+
+  const onStore = () => {
+    setCheckoutStore(true); // open checkout with the store add-on pre-selected
+    setCheckout(true);
   };
 
   const onPaid = () => {
@@ -237,7 +244,14 @@ export default function Home() {
   return (
     <>
       {checkout && (
-        <CheckoutModal amountLabel={`$${PRICE}`} onPaid={onPaid} onClose={() => setCheckout(false)} />
+        <CheckoutModal
+          sitePrice={PRICE}
+          storePrice={WOO}
+          productCount={result?.productCount ?? 0}
+          initialStore={checkoutStore}
+          onPaid={onPaid}
+          onClose={() => setCheckout(false)}
+        />
       )}
       {status !== "idle" && (
         <main className="recover-view">
@@ -264,6 +278,7 @@ export default function Home() {
               entitled={entitled}
               exporting={exporting}
               onBuy={onBuy}
+              onStore={onStore}
               onSample={onSample}
               onReset={reset}
             />
@@ -499,6 +514,7 @@ function Results({
   entitled,
   exporting,
   onBuy,
+  onStore,
   onSample,
   onReset,
 }: {
@@ -507,6 +523,7 @@ function Results({
   entitled: boolean;
   exporting: boolean;
   onBuy: () => void;
+  onStore: () => void;
   onSample: () => void;
   onReset: () => void;
 }) {
@@ -583,7 +600,7 @@ function Results({
           {tab === "comments" && <CommentsTab comments={result.comments} total={result.commentsTotal} />}
           {tab === "appearance" && <AppearanceTab themes={result.themes} fonts={result.fonts} />}
           {tab === "plugins" && <PluginsTab plugins={result.plugins} />}
-          {tab === "products" && <ProductsTab count={result.productCount} sample={result.productSample} />}
+          {tab === "products" && <ProductsTab count={result.productCount} sample={result.productSample} onAddStore={onStore} />}
 
           <button onClick={onReset} className="recover-another">
             ← Recover another backup
@@ -834,7 +851,7 @@ function MediaTab({ media }: { media: MediaState }) {
   );
 }
 
-function ProductsTab({ count, sample }: { count: number; sample: ProductPreview[] }) {
+function ProductsTab({ count, sample, onAddStore }: { count: number; sample: ProductPreview[]; onAddStore: () => void }) {
   if (count === 0) {
     return <p className="muted-note">No WooCommerce products found in this backup.</p>;
   }
@@ -861,7 +878,7 @@ function ProductsTab({ count, sample }: { count: number; sample: ProductPreview[
           Get every product with variations, prices, SKUs and categories as an import-ready export —
           a +${WOO} add-on to your download.
         </p>
-        <button className="pro-btn" onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}>
+        <button className="pro-btn" onClick={onAddStore}>
           Add store export — +${WOO}
         </button>
       </div>
